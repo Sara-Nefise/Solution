@@ -9,6 +9,7 @@ import '../../feature/FarmarProfile/view/farmarpage_view.dart';
 import '../../feature/HomePage/view/homepage_view.dart';
 import '../../feature/Messages/view/messages_view.dart';
 import '../../feature/UserProfile/view/userprofile_view.dart';
+import '../../feature/cameraPage/view/camera.dart';
 
 class ButtonNavigation extends StatefulWidget {
   int value;
@@ -63,7 +64,10 @@ class _ButtonNavigationState extends State<ButtonNavigation> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppColors().grey,
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: ((context) => CameraPage())));
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       body: value == 2

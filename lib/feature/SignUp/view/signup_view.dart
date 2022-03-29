@@ -137,10 +137,10 @@ class _SignUpState extends State<SignUp> {
                 setState(() {
                   changeIsCircular();
                 });
-                if (user != null) {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: ((context) => LoginPage())));
-                }
+                // if (user != null) {
+                //   Navigator.of(context).push(
+                //       MaterialPageRoute(builder: ((context) => LoginPage())));
+                // }
               },
               child: Text(
                 AppString().singIn,
