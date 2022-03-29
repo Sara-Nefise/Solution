@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:solution_app/core/constants/AppColor.dart';
 import 'package:kartal/kartal.dart';
+import 'package:solution_app/feature/Messages/view/messages_view.dart';
 
 import '../../../products/widgets/bottomNavigationBar.dart';
 import '../../../products/widgets/listofimages.dart';
@@ -39,7 +40,9 @@ class _FarmPageState extends State<FarmPage> {
                 height: 20,
                 child: InkWell(
                     child: Image.asset('assets/images/icons8-back-50.png'),
-                    onTap: () { Navigator.of(context).pop();}),
+                    onTap: () {
+                      Navigator.of(context).pop();
+                    }),
               ),
             ),
             _imageCard(context),
@@ -151,7 +154,12 @@ class _FarmPageState extends State<FarmPage> {
                                                 borderRadius:
                                                     context.highBorderRadius,
                                               )),
-                                          onPressed: () {}))
+                                          onPressed: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: ((context) =>
+                                                        MessagePage())));
+                                          }))
                                 ],
                               )),
                         ]),
