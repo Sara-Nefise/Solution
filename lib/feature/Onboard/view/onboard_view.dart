@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 import 'package:solution_app/core/constants/AppString.dart';
 
+import '../../LogIn/view/login_view.dart';
+import '../../SignUp/view/Signup_view.dart';
+
 class OnboardPage extends StatefulWidget {
   OnboardPage({Key? key}) : super(key: key);
 
@@ -86,7 +89,12 @@ class _OnboardPageState extends State<OnboardPage> {
           Icons.email_outlined,
           size: 24.0,
         ),
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            Navigator.of(context).push(MaterialPageRoute(
+                            builder: ((context) => SignUp())));
+          });
+        },
         label: Text(
           AppString().emailSign,
         ),
@@ -95,7 +103,12 @@ class _OnboardPageState extends State<OnboardPage> {
 
   Widget _signInbutton() {
     return ElevatedButton(
-        onPressed: () {},
+        onPressed: () {
+          setState(() {
+            Navigator.of(context).push(MaterialPageRoute(
+                            builder: ((context) => LoginPage())));
+          });
+        },
         child: Text(
           AppString().singIn,
         ),

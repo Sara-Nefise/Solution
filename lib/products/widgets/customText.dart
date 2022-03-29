@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../core/constants/AppString.dart';
+import '../utils/validator/validator.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController codeController;
@@ -34,14 +35,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       child: TextFormField(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) {
-            if (value == null || value.isEmpty) {
-              return "Bu alan boş kalmamalı";
-            }
-            if (value.length < 6) {
-              return "6 dan küçük olamaz";
-            }
-            if (value.length > 20) {
-              return "20 den büyük olamaz";
+            if (widget.labelText == AppString().password) {
+              return Validator().validatePassword(password: value);
+            } else if (widget.labelText == AppString().email) {
+              return Validator().validateEmail(email: value);
             }
           },
           focusNode: widget.focusNode,

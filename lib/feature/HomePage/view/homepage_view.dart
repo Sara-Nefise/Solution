@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:kartal/kartal.dart';
 
 import '../../../core/constants/AppColor.dart';
+import '../../../products/widgets/bottomNavigationBar.dart';
+import '../../../products/widgets/listofimages.dart';
+import '../../FarmPage/view/farmpage_view.dart';
 
 class Homepage extends StatefulWidget {
   Homepage({Key? key}) : super(key: key);
@@ -13,8 +16,7 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
+    return Container(
       color: AppColors().greyLight,
       width: double.infinity,
       padding: context.paddingLow,
@@ -28,7 +30,7 @@ class _HomepageState extends State<Homepage> {
           _galleryGrid()
         ],
       ),
-    ));
+    );
   }
 
   Expanded _galleryGrid() {
@@ -36,74 +38,26 @@ class _HomepageState extends State<Homepage> {
         flex: 4,
         child: CustomScrollView(
           primary: false,
-          slivers: <Widget>[
+          slivers: [
             SliverPadding(
               padding: const EdgeInsets.all(3),
               sliver: SliverGrid.count(
-                crossAxisSpacing: 5,
-                mainAxisSpacing: 5,
+                crossAxisSpacing: 3,
+                mainAxisSpacing: 3,
                 crossAxisCount: 2,
                 children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text("He'd have you all unravel at the"),
-                    color: Colors.green[100],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Heed not the rabble'),
-                    color: Colors.green[200],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Sound of screams but the'),
-                    color: Colors.green[300],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Who scream'),
-                    color: Colors.green[400],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Revolution is coming...'),
-                    color: Colors.green[500],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Revolution, they...'),
-                    color: Colors.green[600],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text("He'd have you all unravel at the"),
-                    color: Colors.green[100],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Heed not the rabble'),
-                    color: Colors.green[200],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Sound of screams but the'),
-                    color: Colors.green[300],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Who scream'),
-                    color: Colors.green[400],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Revolution is coming...'),
-                    color: Colors.green[500],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Revolution, they...'),
-                    color: Colors.green[600],
-                  ),
+                  _imagecard(1),
+                  _imagecard(2),
+                  _imagecard(3),
+                  _imagecard(4),
+                  _imagecard(5),
+                   _imagecard(0),
+                  _imagecard(1),
+                  _imagecard(2),
+                  _imagecard(3),
+                  _imagecard(4),
+                  _imagecard(5),
+                  _imagecard(6),
                 ],
               ),
             ),
@@ -111,6 +65,34 @@ class _HomepageState extends State<Homepage> {
         ));
   }
 
+  Card _imagecard(int img) {
+    return Card(
+      child: InkWell(
+        child: Container(
+          width: 200,
+          height: 200,
+          padding: const EdgeInsets.all(2),
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('${images[img]}'),
+              fit: BoxFit.cover,
+              //alignment: Alignment.topCenter,
+            ),
+          ),
+        ),
+        onTap: () {
+          setState(() {
+            index = img;
+            print('$index');
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: ((context) => FarmPage(
+                      imageIndex: index,
+                    ))));
+          });
+        },
+      ),
+    );
+  }
   Row _buttons(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,

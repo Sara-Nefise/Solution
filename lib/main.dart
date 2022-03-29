@@ -1,15 +1,15 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:solution_app/core/constants/AppColor.dart';
-import 'package:solution_app/feature/SignUp/view/Signup_view.dart';
-import 'feature/FarmPage/view/farmpage_view.dart';
-import 'feature/FarmPage/view/ttt.dart';
-import 'feature/FarmarProfile/view/farmarpage_view.dart';
-import 'feature/HomePage/view/homepage_view.dart';
-import 'feature/Messages/view/messages_view.dart';
-import 'feature/SignIn/view/signin_view.dart';
-import 'feature/UserProfile/view/userprofile_view.dart';
+import 'package:solution_app/feature/LogIn/view/login_view.dart';
+import 'package:solution_app/feature/Onboard/view/onboard_view.dart';
+import 'package:solution_app/feature/SignUp/view/signup_view.dart';
+import 'package:solution_app/products/widgets/googlemap.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(primaryColor: AppColors().green),
-      home: MessagePage(),
+      home: OnboardPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

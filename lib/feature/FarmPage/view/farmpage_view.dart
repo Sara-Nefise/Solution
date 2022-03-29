@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:solution_app/core/constants/AppColor.dart';
 import 'package:kartal/kartal.dart';
-import 'package:custom_radio_grouped_button/custom_radio_grouped_button.dart';
+
+import '../../../products/widgets/bottomNavigationBar.dart';
+import '../../../products/widgets/listofimages.dart';
 
 class FarmPage extends StatefulWidget {
-  FarmPage({Key? key}) : super(key: key);
+  int imageIndex;
+  FarmPage({Key? key, required this.imageIndex}) : super(key: key);
 
   @override
   State<FarmPage> createState() => _FarmPageState();
 }
 
 class _FarmPageState extends State<FarmPage> {
+  late int imageIndex;
   final List<String> fruitsVega = ['Apple', 'Banana', 'Tomato', 'Carrots'];
   int selected = 0;
 
   @override
   void initState() {
     super.initState();
+    imageIndex = widget.imageIndex;
   }
 
   @override
@@ -26,10 +31,20 @@ class _FarmPageState extends State<FarmPage> {
           width: double.infinity,
           padding: context.horizontalPaddingLow,
           child: Column(children: [
-            SizedBox(height: context.dynamicHeight(0.04)),
+            SizedBox(height: context.dynamicHeight(0.03)),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Container(
+                width: 20,
+                height: 20,
+                child: InkWell(
+                    child: Image.asset('assets/images/icons8-back-50.png'),
+                    onTap: () { Navigator.of(context).pop();}),
+              ),
+            ),
             _imageCard(context),
             Expanded(
-              flex: 4,
+              flex: 5,
               child: Container(
                 width: double.infinity,
                 child: Card(
@@ -74,8 +89,6 @@ class _FarmPageState extends State<FarmPage> {
                                           : AppColors().greyLight,
                                     ),
                                   );
-                                  decoration:
-                                  BoxDecoration();
                                 }),
                           ),
                           SizedBox(
@@ -161,9 +174,17 @@ class _FarmPageState extends State<FarmPage> {
         semanticContainer: true,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         child: Stack(children: [
-          Image.network(
-            'https://placeimg.com/640/480/any',
-            fit: BoxFit.fill,
+          Container(
+            width: context.dynamicWidth(1),
+            height: context.dynamicHeight(1),
+            padding: const EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('${images[imageIndex]}'),
+                fit: BoxFit.cover,
+                //alignment: Alignment.topCenter,
+              ),
+            ),
           ),
           Positioned(
               bottom: 0,
